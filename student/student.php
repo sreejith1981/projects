@@ -11,7 +11,7 @@ class student extends dbConfig
 
     function getStudent($search, $blnIsId)
     {
-        $result = array();
+        $result;
 
         if($blnIsId)
         {
