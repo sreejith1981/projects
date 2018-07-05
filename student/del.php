@@ -10,11 +10,13 @@ $objStudent = new student();
 </head>
 <body>
 <?php
-$id = $_GET["studentid"];
+$id = $_GET['id'];
+$name = $_GET['name'];
 $result = $objStudent->deleteStudent($id);
-if($result) echo "<center>Successfully Deleted</center>";
-//include("search.php");
-header("Location: search.php");
+if($result)
+{
+    header("Location: index.php?msg=<center>Successfully deleted '$name'</center>");
+}
 ?>
 </body>
 </html>

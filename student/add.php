@@ -103,7 +103,7 @@ function test_input($data)
 </tr>
 </table>
 </form>
-<p align="center"><a href="search.php">Go Back to Home</a></p>
-<?php include("search.php"); ?>
+<p align="center"><a href="index.php">Go Back to Home</a></p>
+<?php include("index.php"); ?>
 </body>
 </html>
