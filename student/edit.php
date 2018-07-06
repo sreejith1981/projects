@@ -50,7 +50,7 @@ function test_input($data)
 ?>
 
 <center><h1><u>Student Database</u></h1></center>
-<form name="update" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="return validateForm(this)">
+<form name="update" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="return validateForm()">
 <table style=" border:1px solid silver" cellpadding="5px" cellspacing="0px"align="center" border="0">
 <tr>
 <td colspan="3" style="background:#0066FF; color:#FFFFFF; font-size:20px">ADD STUDENT RECORD</td>
