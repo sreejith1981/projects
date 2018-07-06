@@ -91,19 +91,7 @@ function test_input($data)
 }
 ?>
 <center><h1><u>Student Database</u></h1></center>
-<?php
-/*
-$id = $_GET["studentid"];
-$result = $objStudent->getStudent($id, true);
-foreach ($result as $row)
-{
-    $id = $row[0];
-    $name = $row[1];
-    $email = $row[2];
-    $date = $row[3];
-}
- */
-?>
+
 <form name="update" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 <table style=" border:1px solid silver" cellpadding="5px" cellspacing="0px"align="center" border="0">
 <tr>
