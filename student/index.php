@@ -11,7 +11,7 @@ $objStudent = new student();
 </head>
 <body>
 <center><h1><u>Student Database</u></h1></center>
-<span style="color:#00aa00"><?php echo $_GET["msg"] . "<br>"; ?></span>
+<span style="color:#00aa00"><?php echo (isset($_GET["msg"]) ? $_GET["msg"] : '') . "<br>"; ?></span>
 <form name="search" method="post" action="index.php">
 <table style="border:1px solid silver" cellpadding="5px" cellspacing="0px"align="center" border="0">
 <tr>
@@ -29,7 +29,7 @@ $objStudent = new student();
 </tr>
 
 <?php
-$search = $_POST["search"];
+$search = isset($_POST["search"]) ? $_POST["search"] : '';
 $flag = 0;
 $result = $objStudent->getStudent($search, false);
 $id;

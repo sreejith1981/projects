@@ -17,10 +17,11 @@ $objStudent = new student();
 <center><h1><u>Student Database</u></h1></center>
 
 <?php
-$nameErr = $$emailErr = $dateErr = "";
+$nameErr = $emailErr = $dateErr = "";
 $name = $email = $createdDate = "";
 
-if($_POST["do"] == "store")
+$status = isset($_POST["do"]) ? $_POST["do"] : '';
+if($status == "store")
 {
     if(empty($_POST["sname"]))
     {
@@ -62,7 +63,7 @@ if($_POST["do"] == "store")
     if($nameErr == "" && $emailErr == "" && $dateErr == "")
     {
         $result = $objStudent->createStudent($name, $email, $createdDate);
-        if($result) echo "<center>Successfully store in DATABASE</center>";
+        if($result) header("Location: index.php?msg=<center>Successfully Add Student '$name'</center>");
         $name = $email = $createdDate = "";
     }
 }
@@ -104,6 +105,5 @@ function test_input($data)
 </table>
 </form>
 <p align="center"><a href="index.php">Go Back to Home</a></p>
-<?php include("index.php"); ?>
 </body>
 </html>

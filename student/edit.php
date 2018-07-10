@@ -26,7 +26,8 @@ foreach($result as $row)
 <body>
 
 <?php
-if($_POST["do"] == "update")
+$status = isset($_POST["do"]) ? $_POST["do"] : '';
+if($status == "update")
 {
     $name = test_input($_POST["sname"]);
     $email = test_input($_POST["email"]);

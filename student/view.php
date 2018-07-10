@@ -12,7 +12,7 @@ $objStudent = new student();
 <body>
 <center><h1><u>Student Database</u></h1></center>
 <?php
-$id = $_GET["studentid"];
+$id = isset($_GET['id']) ? $_GET['id'] : -1;
 $result = $objStudent->getStudent($id, true);
 
 foreach ($result as $row)
@@ -20,10 +20,12 @@ foreach ($result as $row)
 ?>
 <table style=" border:1px solid silver" cellpadding="5px" cellspacing="0px"align="center" border="1">
 <tr>
-<td colspan="4" style="background:#0066FF; color:#FFFFFF; font-size:20px">VIEW STUDENT DATABASE</td>
+<td colspan="2" style="background:#0066FF; color:#FFFFFF; font-size:20px">VIEW STUDENT DATABASE</td>
 </tr>
 <tr>
 <td> Name of Student</td><td><?php echo $row[1]; ?></td>
+</tr>
+<tr>
 <td> Email</td><td><?php echo $row[2]; ?></td>
 </tr>
 <tr>

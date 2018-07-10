@@ -17,6 +17,7 @@ class dbConfig
 
     function dbConnect()
     {
+        $this->conn = null;
         $this->conn = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
 
         if($this->conn->connect_error)
