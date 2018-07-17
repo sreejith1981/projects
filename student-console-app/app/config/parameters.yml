@@ -1,0 +1,9 @@
+# app/config/parameters.yml
+parameters:
+    database_host:     localhost
+    database_name:     StudentDB
+    database_user:     root
+    database_password: root
+
+# ...
+
