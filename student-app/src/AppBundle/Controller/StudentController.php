@@ -19,6 +19,9 @@ use AppBundle\Form\StudentType;
 use AppBundle\Entity\Student;
 use Doctrine\ORM\EntityManagerInterface;
 
+use AppBundle\Validator\StudentValidator;
+
+
 class StudentController extends Controller
 {
     /**
@@ -30,7 +33,7 @@ class StudentController extends Controller
     {
         $student = $this->getDoctrine()
             ->getRepository('AppBundle:Student')
-            ->findAllOrderedByName();
+            ->getStudent();
 
         return $this->render('student/datadisplay.html.twig', array('data' => $student));
     }
@@ -47,16 +50,27 @@ class StudentController extends Controller
         $student = new Student();
 
         $form = $this->createForm(StudentType::class, $student);
-        $form->handleRequest($request);
+        // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
+        if ($form->isSubmitted())
         {
+            $form->bindRequest($request);
             $student = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($student);
-            $em->flush();
+            $email = $student['email'];
 
-            return $this->redirectToRoute('app_student_display');
+            $errorList = $this->validateEmails($email);
+            $form->get('email')->addError(new FormError($errorList));
+
+            if($form->isValid())
+            {
+                $this->getDoctrine()->getRepository('AppBundle:Student')->addStudent($student);
+
+                return $this->redirectToRoute('app_student_display');
+            }
+            else
+            {
+                return $this->render('student/datainsert.html.twig', array('form' => $form->createView()));
+            }
         }
         else
         {
@@ -75,16 +89,9 @@ class StudentController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $student = $em->getRepository('AppBundle:Student')->find($id);
-
-        if (!$student)
-        {
-            throw $this->createNotFoundException('No student found for id '.$id);
-        }
-
-        $em->remove($student);
-        $em->flush();
+        $this->getDoctrine()
+            ->getRepository('AppBundle:Student')
+            ->deleteStudent($id);
 
         return $this->redirectToRoute('app_student_display');
     }
@@ -98,8 +105,9 @@ class StudentController extends Controller
      */
     public function updateAction($id, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $student = $em->getRepository('AppBundle:Student')->find($id);
+        $student = $this->getDoctrine()
+            ->getRepository('AppBundle:Student')
+            ->find($id);
 
         if (!$student)
         {
@@ -116,9 +124,9 @@ class StudentController extends Controller
         {
             $student = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($student);
-            $em->flush();
+            $this->getDoctrine()
+                ->getRepository('AppBundle:Student')
+                ->addStudent($student);
 
             return $this->redirectToRoute('app_student_display');
         }

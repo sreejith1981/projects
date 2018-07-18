@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\Constraints as StudentAssert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StudentRepository")
@@ -16,8 +17,8 @@ class Student
      *
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      *
-     * @Assert\NotBlank()
-     * @Assert\Type(type="alpha")
+     * @Assert\NotBlank
+     * @StudentAssert\ContainsAlpha
      */
     private $name;
 

@@ -6,20 +6,32 @@ use Doctrine\ORM\EntityRepository;
 
 class StudentRepository extends EntityRepository
 {
-    public function findAllOrderedByName()
+    public function getStudent()
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p FROM AppBundle:Student p ORDER BY p.name ASC'
-            )
-            ->getResult();
+        return $this->findBy([], ['name' => 'ASC']);
     }
 
 
 
     public function addStudent(\AppBundle\Entity\Student $student)
     {
+        $this->_em->persist($student);
+        $this->_em->flush();
+    }
 
+
+
+    public function deleteStudent($id)
+    {
+        $student = $this->find($id);
+
+        if(!$student)
+        {
+            throw $this->createNotFoundException('No student found for id ' . $id);
+        }
+
+        $this->getEntityManager()->remove($student);
+        $this->getEntityManager()->flush();
     }
 }
 ?>

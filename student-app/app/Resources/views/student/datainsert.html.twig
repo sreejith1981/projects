@@ -1,79 +1,32 @@
 {% extends 'base.html.twig' %}
+
 {% block stylesheets %}
-<style>
-   #simpleform {
-      width:600px;
-      border:2px solid grey;
-      padding:14px;
-   }
-   #simpleform label {
-      font-size:14px;
-      float:left;
-      width:300px;
-      text-align:right;
-      display:block;
-   }
-   #simpleform span {
-      font-size:11px;
-      color:grey;
-      width:100px;
-      text-align:right;
-      display:block;
-   }
-   #simpleform input {
-      border:1px solid grey;
-      font-family:verdana;
-      font-size:14px;
-      color:light blue;
-      height:24px;
-      width:250px;
-      margin: 0 0 10px 10px;
-   }
-   #simpleform textarea {
-      border:1px solid grey;
-      font-family:verdana;
-      font-size:14px;
-      color:light blue;
-      height:120px;
-      width:250px;
-      margin: 0 0 20px 10px;
-   }
-   #simpleform select {
-      margin: 0 0 20px 10px;
-   }
-   #simpleform button {
-      clear:both;
-      margin-left:250px;
-      background: grey;
-      color:#FFFFFF;
-      border:solid 1px #666666;
-      font-size:16px;
-   }
-</style>
+    <link href="{{ asset('css/stylesheet.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
+
 {% block body %}
    <h3>Student Registration:</h3>
-   <div id = "simpleform">
+   <div>
        {{ form_start(form) }}
        {{ form_errors(form) }}
 
-       <div>
-           {{ form_label(form.name, 'Name: ') }}
-           {{ form_widget(form.name) }}
-           {{ form_errors(form.name) }}
-       </div>
-
-       <div>
-           {{ form_label(form.email, 'Email: ') }}
-           {{ form_widget(form.email) }}
-           {{ form_errors(form.email) }}
-       </div>
-
-       <div>
-           {{ form_label(form.createdDate, 'Date: ') }}
-           {{ form_widget(form.createdDate) }}
-           {{ form_errors(form.createdDate) }}
-       </div>
+       <table class="table2">
+           <tr>
+               <td class="table3">{{ form_label(form.name, 'Name: ') }}</td>
+               <td class="table3">{{ form_widget(form.name) }}</td>
+               <td class="table3 error">{{ form_errors(form.name) }}</td>
+           </tr>
+           <tr>
+               <td class="table3">{{ form_label(form.email, 'Email: ') }}</td>
+               <td class="table3">{{ form_widget(form.email) }}</td>
+               <td class="table3 error">{{ form_errors(form.email) }}</td>
+           </tr>
+           <tr>
+               <td class="table3">{{ form_label(form.createdDate, 'Date: ') }}</td>
+               <td class="table3">{{ form_widget(form.createdDate) }}</td>
+               <td class="table3 error">{{ form_errors(form.createdDate) }}</td>
+           </tr>
+       </table>
 
        <div>
            {{ form_widget(form.save) }}
