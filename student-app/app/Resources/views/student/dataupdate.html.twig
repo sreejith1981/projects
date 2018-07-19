@@ -1,28 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-<link href="{{ asset('css/stylesheet.css') }}" type="text/css" rel="stylesheet" />
-{% endblock %}
-
 {% block body %}
-   <h3>Update Student :</h3>
+   <h2>Update Student :</h2>
    <div>
        {{ form_start(form) }}
        {{ form_errors(form) }}
 
        <table class="table2">
            <tr>
-               <td class="table3">{{ form_label(form.name, 'Name: ') }}</td>
+               <td class="table3">{{ form_label(form.name) }}</td>
                <td class="table3">{{ form_widget(form.name) }}</td>
                <td class="table3 error">{{ form_errors(form.name) }}</td>
            </tr>
            <tr>
-               <td class="table3">{{ form_label(form.email, 'Email: ') }}</td>
+               <td class="table3">{{ form_label(form.email) }}</td>
                <td class="table3">{{ form_widget(form.email) }}</td>
                <td class="table3 error">{{ form_errors(form.email) }}</td>
            </tr>
            <tr>
-               <td class="table3">{{ form_label(form.createdDate, 'Date: ') }}</td>
+               <td class="table3">{{ form_label(form.createdDate) }}</td>
                <td class="table3">{{ form_widget(form.createdDate) }}</td>
                <td class="table3 error">{{ form_errors(form.createdDate) }}</td>
            </tr>

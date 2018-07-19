@@ -2,12 +2,39 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Student Management System{% endblock %}</title>
+        {% block stylesheets %}<link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+        <div class="wrapper">
+            <div class="header">
+                <h1>Student Management System</h1>
+                <div class="hear-btn">
+                    <a href="{{ path('app_student_new') }}">Add New</a>
+                </div>
+            </div>
+
+            <div class="container">
+                {% block search %}
+                {% endblock %}
+
+                {% block body %}{% endblock %}
+
+                <div class="pagination">
+                    <ul class="hidden">
+                        <li><</li>
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

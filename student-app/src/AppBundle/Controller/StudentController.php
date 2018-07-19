@@ -19,8 +19,6 @@ use AppBundle\Form\StudentType;
 use AppBundle\Entity\Student;
 use Doctrine\ORM\EntityManagerInterface;
 
-use AppBundle\Validator\StudentValidator;
-
 
 class StudentController extends Controller
 {
@@ -50,27 +48,14 @@ class StudentController extends Controller
         $student = new Student();
 
         $form = $this->createForm(StudentType::class, $student);
-        // $form->handleRequest($request);
+        $form->handleRequest($request);
 
-        if ($form->isSubmitted())
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $form->bindRequest($request);
             $student = $form->getData();
-            $email = $student['email'];
+            $this->getDoctrine()->getRepository('AppBundle:Student')->addStudent($student);
 
-            $errorList = $this->validateEmails($email);
-            $form->get('email')->addError(new FormError($errorList));
-
-            if($form->isValid())
-            {
-                $this->getDoctrine()->getRepository('AppBundle:Student')->addStudent($student);
-
-                return $this->redirectToRoute('app_student_display');
-            }
-            else
-            {
-                return $this->render('student/datainsert.html.twig', array('form' => $form->createView()));
-            }
+            return $this->redirectToRoute('app_student_display');
         }
         else
         {

@@ -4,7 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Validator\Constraints as StudentAssert;
+
+
+
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StudentRepository")
@@ -17,17 +19,34 @@ class Student
      *
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      *
-     * @Assert\NotBlank
-     * @StudentAssert\ContainsAlpha
+     * @Assert\NotBlank()
+     *
+     * @Assert\Regex(
+     *     pattern = "/^[a-zA-Z ]+$/",
+     *     match = true,
+     *     message = "Name can contain only alphabet and space"
+     * )
      */
     private $name;
+
+
+
 
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=200, nullable=false)
+     *
+     * @Assert\Regex(
+     *     pattern = "/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/",
+     *     match = true,
+     *     message = "Invalid email"
+     * )
      */
     private $email;
+
+
+
 
     /**
      * @var \DateTime
@@ -38,6 +57,9 @@ class Student
      * @Assert\Type("\DateTime")
      */
     private $createdDate;
+
+
+
 
     /**
      * @var integer
@@ -64,6 +86,9 @@ class Student
         return $this;
     }
 
+
+
+
     /**
      * Get name
      *
@@ -73,6 +98,9 @@ class Student
     {
         return $this->name;
     }
+
+
+
 
     /**
      * Set email
@@ -88,6 +116,9 @@ class Student
         return $this;
     }
 
+
+
+
     /**
      * Get email
      *
@@ -97,6 +128,9 @@ class Student
     {
         return $this->email;
     }
+
+
+
 
     /**
      * Set createdDate
@@ -112,6 +146,9 @@ class Student
         return $this;
     }
 
+
+
+
     /**
      * Get createdDate
      *
@@ -121,6 +158,9 @@ class Student
     {
         return $this->createdDate;
     }
+
+
+
 
     /**
      * Get id
