@@ -27,13 +27,22 @@ class StudentController extends Controller
      *
      * @Route("/student/display" ,name = "app_student_display" )
      */
-    public function displayAction()
+    public function displayAction(Request $request)
     {
         $student = $this->getDoctrine()
             ->getRepository('AppBundle:Student')
             ->getStudent();
 
-        return $this->render('student/datadisplay.html.twig', array('data' => $student));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $student,
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 5)/*limit per page*/
+        );
+
+        return $this->render('student/datadisplay.html.twig', [
+            'data' => $pagination
+        ]);
     }
 
 
@@ -117,7 +126,7 @@ class StudentController extends Controller
         }
         else
         {
-            return $this->render('student/dataupdate.html.twig', array(
+            return $this->render('student/datainsert.html.twig', array(
                 'form' => $form->createView(),
             ));
         }
