@@ -13,6 +13,20 @@ class StudentRepository extends EntityRepository
 
 
 
+    public function listStudent($name)
+    {
+        $query;
+
+        $query = $this->createQueryBuilder('sr')
+               ->where('sr.name LIKE :name')
+               ->setParameter('name', '%'.$name.'%')
+               ->getQuery();
+
+        return $query;
+    }
+
+
+
     public function addStudent(\AppBundle\Entity\Student $student)
     {
         $this->_em->persist($student);

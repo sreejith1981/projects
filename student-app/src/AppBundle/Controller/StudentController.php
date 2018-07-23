@@ -29,16 +29,10 @@ class StudentController extends Controller
      */
     public function displayAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('AppBundle:Student')->createQueryBuilder('bp');
-        if ($request->query->getAlnum('filter')) {
-            $queryBuilder->where('bp.name LIKE :name')
-                ->setParameter('name', '%' . $request->query->getAlnum('filter') . '%');
-        }
-        $query = $queryBuilder->getQuery();
+        $student = $this->getDoctrine()->getRepository('AppBundle:Student')->listStudent($request->query->getAlnum('filter'));
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query, /* query NOT result */
+            $student, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             $request->query->getInt('limit', 10)/*limit per page*/
         );
