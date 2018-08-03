@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Report
+ *
+ * @ORM\Table(name="report")
+ * @ORM\Entity
+ */
+class Report
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_begin", type="datetime", nullable=false)
+     */
+    private $dateBegin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_end", type="datetime", nullable=false)
+     */
+    private $dateEnd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="domain", type="string", length=255, nullable=false)
+     */
+    private $domain;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="org", type="string", length=255, nullable=false)
+     */
+    private $org;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="entry_datetime", type="datetime", nullable=false)
+     */
+    private $entryDatetime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

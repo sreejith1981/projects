@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\ReportRecord" table="report_record">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="reportId" type="integer" column="report_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ip" type="string" column="ip" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="count" type="integer" column="count" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="disposition" type="boolean" column="disposition" nullable="false">
+      <options>
+        <option name="comment">none,quarantine,reject</option>
+      </options>
+    </field>
+    <field name="dkimResult" type="boolean" column="dkim_result" nullable="false">
+      <options>
+        <option name="comment">none,pass,fail,neutral,policy,temperror,permerror</option>
+      </options>
+    </field>
+    <field name="spfResult" type="boolean" column="spf_result" nullable="false">
+      <options>
+        <option name="comment">none,neutral,pass,fail,softfail,temperror,permerror</option>
+      </options>
+    </field>
+    <field name="fromHeader" type="string" column="from_header" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="reason" type="string" column="reason" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

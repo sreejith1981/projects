@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\ReportResult" table="report_result">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="reportId" type="integer" column="report_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="recordId" type="integer" column="record_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="domain" type="string" column="domain" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dkimResult" type="integer" column="dkim_result" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">none,pass,fail,softfail,neutral,policy,temperror,permerror</option>
+      </options>
+    </field>
+    <field name="dkimSelector" type="string" column="dkim_selector" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="spfResult" type="integer" column="spf_result" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">none,pass,fail,softfail,neutral,policy,temperror,permerror</option>
+      </options>
+    </field>
+    <field name="sequence" type="integer" column="sequence" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

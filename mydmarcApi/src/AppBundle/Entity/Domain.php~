@@ -1,0 +1,82 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Domain
+ *
+ * @ORM\Table(name="domain")
+ * @ORM\Entity
+ */
+class Domain
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="domain_name", type="string", length=255, nullable=false)
+     */
+    private $domainName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="volume", type="integer", nullable=false)
+     */
+    private $volume;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spf", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $spf;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="dkim", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $dkim;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="dmarc", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $dmarc;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="created_by", type="integer", nullable=false)
+     */
+    private $createdBy;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_datetime", type="datetime", nullable=false)
+     */
+    private $createdDatetime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

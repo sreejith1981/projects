@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ReportResult
+ *
+ * @ORM\Table(name="report_result")
+ * @ORM\Entity
+ */
+class ReportResult
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="report_id", type="integer", nullable=false)
+     */
+    private $reportId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="record_id", type="integer", nullable=false)
+     */
+    private $recordId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="domain", type="string", length=255, nullable=false)
+     */
+    private $domain;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dkim_result", type="integer", nullable=false)
+     */
+    private $dkimResult;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dkim_selector", type="string", length=20, nullable=false)
+     */
+    private $dkimSelector;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spf_result", type="integer", nullable=false)
+     */
+    private $spfResult;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sequence", type="integer", nullable=false)
+     */
+    private $sequence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+
